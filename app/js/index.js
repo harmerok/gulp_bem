@@ -1,5 +1,11 @@
 $(function(){
   $('.square').on('click', function(){
-    $(this).hide();
+    $(this).show();
+  })
+});
+
+$(function(){
+  $('.button').on('click', function(){
+    $(this).hide()
   })
 });
