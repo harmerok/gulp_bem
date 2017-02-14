@@ -5,7 +5,7 @@ Template based on **BEM methodology** (dividing the user interface into independ
 
 After putting the html code of the block on the page, css and JS will be collected automatically from the block folders into this page's css file, and the images will be moved to the folder with  main images from the block folder
 ###Gathering classes
-Was used <a href="https://github.com/dab/html2bl">html2bl</a> for gathering classes.
+<a href="https://github.com/dab/html2bl">html2bl</a> was used  for gathering classes.
 It was forked, and there **was added  _"classes=[]"_** for gathering classes for multiple pages separately:
 
 _exports.getFileNames = function(params) {**classes= []**...};_
