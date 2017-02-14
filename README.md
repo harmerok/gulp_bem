@@ -1,4 +1,4 @@
-# gulp_bem 1.0.0b
+# gulp_bem_template_1.0.0b
 ####Template is on stage of testing.
 ##Overview
 Template based on **BEM methodology** (dividing the user interface into independent blocks).
