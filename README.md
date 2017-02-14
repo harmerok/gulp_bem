@@ -1,7 +1,7 @@
 # gulp_bem_template_1.0.0b
 ####The template is at a testing stage.
 ##Overview
-The template is based on **BEM methodology** (the idea is to divide the user interface into independent blocks).
+The template is based on **BEM methodology**. It can be used for multiple pages with their individual parameters.
 
 After putting the html code of the block on the page, css and JS will be collected automatically from the block folders into this page's css file, and the images will be moved to the folder with  main images from the block folder
 ###Gathering classes
