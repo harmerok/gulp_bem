@@ -33,6 +33,10 @@ var getFN = []
 for (var i = 0; i < params.length; ++i) {
   getFN[i] = getFileNames.getFileNames(params[i]);
 }
+// service file for sass vars
+var serviceSass = 'app/source/sass/service.sass';
+
+gulp.task('default', ['watch']);
 
 gulp.task('browser-sync', function(){
   browserSync({
@@ -62,11 +66,14 @@ function createTaskSass(key){
 
   getFN[key] = getFileNames.getFileNames(params[key]);
   getFN[key].then(function(src){
-    return src.dirs.map(function(dirName){
+    var serv = [path.resolve(serviceSass)]
+    var dirsBlocks = src.dirs.map(function(dirName){
       var jsGlob = path.resolve(dirName) + '/*.sass';
       return jsGlob;
+    })
 
-    });
+    return serv.concat(dirsBlocks)
+
   })
   .then(function(jsGlobs){
     gulp.src(jsGlobs)
@@ -77,9 +84,10 @@ function createTaskSass(key){
       .pipe(gulp.dest('app/css'))
       .pipe(browserSync.reload({stream:true}))
   })
-  .done();
 
+  .done();
 }
+
 
 //Function for creating task: Collecting js on levels for each page
 function createTaskJs(key){

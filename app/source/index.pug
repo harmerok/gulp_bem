@@ -1,27 +1,7 @@
-include includes/head.pug
-append links 
+extends includes/main_layout.pug
+append links
   link(rel="stylesheet", href="css/index.css")
-block content
-  span MAIN
-
-  .square ads
-  .circle 123
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
+append scripts
   script(src="js/index.js")
+block content
+  span Index

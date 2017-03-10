@@ -1,5 +1,7 @@
-include includes/head.pug
+extends includes/main_layout.pug
 append links
   link(rel="stylesheet", href="css/about.css")
+append scripts
+  script(src="js/about.js")
 block content
-  span.square About
+  span About
