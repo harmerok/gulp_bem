@@ -1,4 +1,4 @@
-# gulp_bem_template_1.1.0b
+# gulp_bem_template_1.1.1b
 ####The template is at a testing stage.
 ##Overview
 The template is based on **BEM methodology**. It can be used for multiple pages with their individual parameters.
@@ -11,7 +11,7 @@ It was forked, and then the **_"classes=[]"_** was added in order to gather clas
 _exports.getFileNames = function(params) {**classes= []**...};_
 
 ##Tools: 
-gulp/pug/sass
+gulp/pug/styl
 
 ##Features:
 
