@@ -1,4 +1,4 @@
-# gulp_bem_template_1.0.0b
+# gulp_bem_template_1.1.0b
 ####The template is at a testing stage.
 ##Overview
 The template is based on **BEM methodology**. It can be used for multiple pages with their individual parameters.
