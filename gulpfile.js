@@ -1,5 +1,5 @@
 var gulp          = require('gulp'),
-    sass          = require('gulp-sass'),
+    styl          = require('gulp-stylus'),
     pug           = require('gulp-pug'),
     cache         = require('gulp-cache'),
     autoprefixer  = require('gulp-autoprefixer'),
@@ -14,15 +14,15 @@ var gulp          = require('gulp'),
 
 var params = [
     {
-      out: 'app/source/sass',                                           //directory for gathered sass file
-      outSass: 'index.sass',                                            //gathered sass file for page x, ready for compile
+      out: 'app/source/styl',                                           //directory for gathered stylus file
+      outStyl: 'index.styl',                                            //gathered stylus file for page x, ready for compile
       outJs: 'index.js',                                                //gatherd js file file for page x
       htmlSrc: 'app/index.html',                                        //src for gathering classes from compiled page x)
       levels: ['app/source/common.blocks', 'app/source/index.blocks']   //redefining levels for gathering blocks
     },
     {
-      out: 'app/source/sass',
-      outSass: 'about.sass',
+      out: 'app/source/styl',
+      outStyl: 'about.styl',
       outJs: 'about.js',
       htmlSrc: 'app/about.html',
       levels: ['app/source/common.blocks', 'app/source/about.blocks']
@@ -33,8 +33,8 @@ var getFN = []
 for (var i = 0; i < params.length; ++i) {
   getFN[i] = getFileNames.getFileNames(params[i]);
 }
-// service file for sass vars
-var serviceSass = 'app/source/sass/service.sass';
+// service file for styl vars
+var serviceStyl = 'app/source/styl/service.styl';
 
 gulp.task('default', ['watch']);
 
@@ -47,9 +47,9 @@ gulp.task('browser-sync', function(){
   });
 })
 
-gulp.task('watch', ['browser-sync', 'pug', 'libs', 'loopSass', 'loopJs', 'loopImg'], function(){
-  gulp.watch('app/source/**/*.pug', ['pug', 'loopSass', 'loopJs', 'loopImg'], browserSync.reload)
-  gulp.watch('app/source/**/*.sass', ['loopSass'], browserSync.reload)
+gulp.task('watch', ['browser-sync', 'pug', 'libs', 'loopStyl', 'loopJs', 'loopImg'], function(){
+  gulp.watch('app/source/**/*.pug', ['pug', 'loopStyl', 'loopJs', 'loopImg'], browserSync.reload)
+  gulp.watch('app/source/**/*.styl', ['loopStyl'], browserSync.reload)
   gulp.watch('app/source/**/*.js', ['loopJs'], browserSync.reload)
 
 })
@@ -61,14 +61,14 @@ gulp.task('pug',  function() {
       .pipe(browserSync.reload({stream:true}))
 });
 
-//Function for creating task: Collecting sass on levels and generation css for each page
-function createTaskSass(key){
+//Function for creating task: Collecting styl on levels and generation css for each page
+function createTaskStyl(key){
 
   getFN[key] = getFileNames.getFileNames(params[key]);
   getFN[key].then(function(src){
-    var serv = [path.resolve(serviceSass)]
+    var serv = [path.resolve(serviceStyl)]
     var dirsBlocks = src.dirs.map(function(dirName){
-      var jsGlob = path.resolve(dirName) + '/*.sass';
+      var jsGlob = path.resolve(dirName) + '/*.styl';
       return jsGlob;
     })
 
@@ -77,9 +77,9 @@ function createTaskSass(key){
   })
   .then(function(jsGlobs){
     gulp.src(jsGlobs)
-      .pipe(concat(params[key].outSass))
+      .pipe(concat(params[key].outStyl))
       .pipe(gulp.dest(params[key].out))
-      .pipe(sass())
+      .pipe(styl())
       .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
       .pipe(gulp.dest('app/css'))
       .pipe(browserSync.reload({stream:true}))
@@ -132,9 +132,9 @@ gulp.task('loopImg', function(){
   }
 })
 
-gulp.task('loopSass', function(){
+gulp.task('loopStyl', function(){
   for (var i = 0; i < params.length; i++){
-    createTaskSass(i);
+    createTaskStyl(i);
   }
 })
 

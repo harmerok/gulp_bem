@@ -1,5 +1,6 @@
-$(function(){
-  $('.square').on('click', function(){
-    $(this).show();
+// footer.js
+$(document).ready(function() {
+  $('.footer').on('click', function(){
+    alert('hello')
   })
 });
