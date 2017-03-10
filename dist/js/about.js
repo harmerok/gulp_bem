@@ -1,11 +1,6 @@
-$(function(){
-  $('.square').on('click', function(){
-    $(this).show();
-  })
-});
-
-$(function(){
-  $('.button').on('click', function(){
-    $(this).show()
+// footer.js
+$(document).ready(function() {
+  $('.footer').on('click', function(){
+    alert('hello')
   })
 });
